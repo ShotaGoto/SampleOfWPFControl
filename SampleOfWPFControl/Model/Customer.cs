@@ -1,4 +1,4 @@
-﻿namespace SampleOfWPFControl
+﻿namespace SampleOfWPFControl.Model
 {
     //Defines the customer object
     public class Customer
