@@ -46,17 +46,42 @@
                         AutoGenerateColumns="False"
                         CanUserAddRows="False"
                         Drop="DG1_Drop"
+                        IsReadOnly="True"
                         ItemsSource="{Binding}"
-                        MouseMove="DG1_MouseMove">
+                        MouseMove="DG1_MouseMove"
+                        SelectionUnit="Cell">
                         <DataGrid.Columns>
+                            <DataGridTemplateColumn Width="150">
+                                <DataGridTemplateColumn.Header>
+                                    <TextBlock Text="Full Name" />
+                                </DataGridTemplateColumn.Header>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Customer.FullName}" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
                             <DataGridTextColumn
-                                Binding="{Binding FirstName}"
-                                Header="First Name"
-                                IsReadOnly="True" />
+                                Width="150"
+                                Binding="{Binding Customer.FullName}"
+                                Header="Full Name" />
                             <DataGridTextColumn
-                                Binding="{Binding LastName}"
-                                Header="Last Name"
-                                IsReadOnly="True" />
+                                Width="1*"
+                                Binding="{Binding Job1}"
+                                Header="Job1" />
+                            <DataGridTextColumn
+                                Width="1*"
+                                Binding="{Binding Job2}"
+                                Header="Job2" />
+                            <DataGridTextColumn
+                                Width="1*"
+                                Binding="{Binding Job3}"
+                                Header="Job3" />
+                            <DataGridTextColumn
+                                Width="1*"
+                                Binding="{Binding Job4}"
+                                Header="Job4" />
                         </DataGrid.Columns>
                     </DataGrid>
                 </StackPanel>

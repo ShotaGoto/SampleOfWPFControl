@@ -26,12 +26,12 @@
                 MouseMove="DG2_MouseMove">
                 <DataGrid.Columns>
                     <DataGridTextColumn
-                        Binding="{Binding FirstName}"
-                        Header="First Name"
+                        Binding="{Binding ID}"
+                        Header="No"
                         IsReadOnly="True" />
                     <DataGridTextColumn
-                        Binding="{Binding LastName}"
-                        Header="Last Name"
+                        Binding="{Binding Details}"
+                        Header="内容"
                         IsReadOnly="True" />
                 </DataGrid.Columns>
             </DataGrid>

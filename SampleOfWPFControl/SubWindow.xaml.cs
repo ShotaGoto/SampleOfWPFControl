@@ -1,4 +1,5 @@
 ﻿using SampleOfWPFControl.Model;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -43,8 +44,8 @@ namespace SampleOfWPFControl
             //既に入っていたら無視
             if (MainWin.DG2Data.Where(x => x.ID == _Customer.ID).Count() > 0) return;
 
-            MainWin.DG2Data.Add(_Customer);
-            MainWin.DG1Data.Remove(_Customer);
+            //MainWin.DG2Data.Add(_Customer);
+            //MainWin.DG1Data.Remove(_Customer);
         }
     }
 }

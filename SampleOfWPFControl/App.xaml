@@ -1,8 +1,9 @@
-﻿<Application x:Class="SampleOfWPFControl.App"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:SampleOfWPFControl"
-             StartupUri="MainWindow.xaml">
+﻿<Application
+    x:Class="SampleOfWPFControl.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:SampleOfWPFControl"
+    StartupUri="MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
 
@@ -46,6 +47,6 @@
                 Opacity="0.4"
                 Color="{DynamicResource Primary500}" />
 
-        </ResourceDictionary>     
+        </ResourceDictionary>
     </Application.Resources>
 </Application>
