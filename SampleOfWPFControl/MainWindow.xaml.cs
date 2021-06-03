@@ -28,11 +28,9 @@ namespace SampleOfWPFControl
             return new ObservableCollection<Customer>(Customers);
         }
 
-        private ObservableCollection<Customer> DG1Data { get; set; } = new ObservableCollection<Customer>();
-        private ObservableCollection<Customer> DG2Data { get; set; } = new ObservableCollection<Customer>();
-        public ObservableCollection<Customer> DG3Data { get; set; } = new ObservableCollection<Customer>();
+        public ObservableCollection<Customer> DG1Data { get; set; } = new ObservableCollection<Customer>();
+        public ObservableCollection<Customer> DG2Data { get; set; } = new ObservableCollection<Customer>();
 
-        public ObservableCollection<Customer> DG4Data { get; set; } = new ObservableCollection<Customer>();
         private SubWindow SubWin;
 
         public MainWindow()
@@ -41,16 +39,14 @@ namespace SampleOfWPFControl
 
             //GetData() creates a collection of Customer data from a database
             DG1Data = GetNewData();
-            DG3Data = GetNewData();
 
             //Bind the DataGrid to the customer data
             DG1.DataContext = DG1Data;
-            DG2.DataContext = DG2Data;
-            DG3.DataContext = DG3Data;
 
             SubWin = new SubWindow(this);
+            cmb.ItemsSource = GetNewData().Select(x => x.FirstName);
+            cmb.SelectedIndex = 0;
         }
-
 
         /// <summary>
         /// サブウィンドウ表示
@@ -88,54 +84,9 @@ namespace SampleOfWPFControl
             DG2Data.Remove(_Customer);
         }
 
-        private void DG2_MouseMove(object sender, MouseEventArgs e)
+        private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            //マウスクリック時以外は無視する
-            if (e.LeftButton != MouseButtonState.Pressed) return;
-
-            //クリックしたコントロールがDataGridで無い時は無視
-            if (!(sender is DataGrid DG)) return;
-            //行を選択していない時は無視
-            if (DG.SelectedItems.Count == 0) return;
-
-            DragDrop.DoDragDrop(DG, DG.SelectedItems[0], DragDropEffects.Move);
-        }
-
-        private void DG2_Drop(object sender, DragEventArgs e)
-        {
-            Customer _Customer = (Customer)e.Data.GetData(typeof(Customer));
-            if (_Customer == null) return;
-
-            //既に入っていたら無視
-            if (DG2Data.Where(x => x.ID == _Customer.ID).Count() > 0) return;
-
-            DG2Data.Add(_Customer);
-            DG1Data.Remove(_Customer);
-        }
-
-        private void DG3_MouseMove(object sender, MouseEventArgs e)
-        {
-            //マウスクリック時以外は無視する
-            if (e.LeftButton != MouseButtonState.Pressed) return;
-
-            //クリックしたコントロールがDataGridで無い時は無視
-            if (!(sender is DataGrid DG)) return;
-            //行を選択していない時は無視
-            if (DG.SelectedItems.Count == 0) return;
-
-            DragDrop.DoDragDrop(DG, DG.SelectedItems[0], DragDropEffects.Move);
-        }
-
-        private void DG3_Drop(object sender, DragEventArgs e)
-        {
-            Customer _Customer = (Customer)e.Data.GetData(typeof(Customer));
-            if (_Customer == null) return;
-
-            //既に入っていたら無視
-            if (DG3Data.Where(x => x.ID == _Customer.ID).Count() > 0) return;
-
-            DG3Data.Add(_Customer);
-            DG4Data.Remove(_Customer);
+            SliderValue.Content = ((Slider)sender).Value;
         }
     }
 }

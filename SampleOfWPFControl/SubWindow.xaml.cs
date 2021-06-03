@@ -18,10 +18,10 @@ namespace SampleOfWPFControl
 
             MainWin = main;
 
-            DG4.DataContext = MainWin.DG4Data;
+            DG2.DataContext = MainWin.DG2Data;
         }
 
-        private void DG4_MouseMove(object sender, MouseEventArgs e)
+        private void DG2_MouseMove(object sender, MouseEventArgs e)
         {
             //マウスクリック時以外は無視する
             if (e.LeftButton != MouseButtonState.Pressed) return;
@@ -34,16 +34,16 @@ namespace SampleOfWPFControl
             DragDrop.DoDragDrop(DG, DG.SelectedItems[0], DragDropEffects.Move);
         }
 
-        private void DG4_Drop(object sender, DragEventArgs e)
+        private void DG2_Drop(object sender, DragEventArgs e)
         {
             Customer _Customer = (Customer)e.Data.GetData(typeof(Customer));
             if (_Customer == null) return;
 
             //既に入っていたら無視
-            if (MainWin.DG4Data.Where(x => x.ID == _Customer.ID).Count() > 0) return;
+            if (MainWin.DG2Data.Where(x => x.ID == _Customer.ID).Count() > 0) return;
 
-            MainWin.DG4Data.Add(_Customer);
-            MainWin.DG3Data.Remove(_Customer);
+            MainWin.DG2Data.Add(_Customer);
+            MainWin.DG1Data.Remove(_Customer);
         }
     }
 }
