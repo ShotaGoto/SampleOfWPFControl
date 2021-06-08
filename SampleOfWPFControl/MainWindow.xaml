@@ -217,5 +217,11 @@
             </Grid>
 
         </TabItem>
+        <TabItem Header="読み上げサンプル">
+            <StackPanel>
+                <TextBox Name="txtTalking" Cursor="IBeam">おはようございます。</TextBox>
+                <Button Name="Talking" Click="Talking_Click">読み上げ</Button>
+            </StackPanel>
+        </TabItem>
     </TabControl>
 </Window>

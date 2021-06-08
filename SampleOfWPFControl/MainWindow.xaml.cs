@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Speech.Synthesis;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -14,7 +16,6 @@ namespace SampleOfWPFControl
     /// </summary>
     public partial class MainWindow : Window
     {
-
         public ObservableCollection<JobTimeLine> DG1Data { get; set; } = new ObservableCollection<JobTimeLine>();
         public ObservableCollection<Job> DG2Data { get; set; } = new ObservableCollection<Job>();
 
@@ -94,6 +95,7 @@ namespace SampleOfWPFControl
         }
 
         #region"テスト用初期データ生成"
+
         private ObservableCollection<JobTimeLine> GetNewData()
         {
             var JobTimeLines = new List<JobTimeLine>();
@@ -104,8 +106,6 @@ namespace SampleOfWPFControl
             var Customer2 = new Customer { ID = 2, FirstName = "tiger", LastName = "far" };
             var JobTimeLine2 = new JobTimeLine() { Customer = Customer2 };
             JobTimeLines.Add(JobTimeLine2);
-
-
 
             return new ObservableCollection<JobTimeLine>(JobTimeLines);
         }
@@ -128,7 +128,18 @@ namespace SampleOfWPFControl
 
             return new ObservableCollection<Job>(Jobs);
         }
+
         #endregion
 
+        private void Talking_Click(object sender, RoutedEventArgs e)
+        {
+            var txt = txtTalking.Text;
+            Task.Run(() => {
+                var synthesizer = new SpeechSynthesizer();
+                synthesizer.SetOutputToDefaultAudioDevice();
+                synthesizer.Speak(txt);
+            });
+            
+        }
     }
 }
